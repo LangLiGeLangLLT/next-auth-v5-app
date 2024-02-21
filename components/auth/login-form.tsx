@@ -28,8 +28,8 @@ export default function LoginForm() {
       ? 'Email already in use with different provider'
       : ''
 
-  const [error, setError] = React.useState<string | undefined>('')
-  const [success, setSuccess] = React.useState<string | undefined>('')
+  const [error, setError] = React.useState<string | undefined>()
+  const [success, setSuccess] = React.useState<string | undefined>()
   const [isPending, startTransition] = React.useTransition()
 
   const form = useForm<z.infer<typeof LoginSchema>>({

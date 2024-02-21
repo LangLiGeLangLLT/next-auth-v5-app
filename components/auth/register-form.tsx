@@ -21,8 +21,8 @@ import FormSuccess from '@/components/form-success'
 import { register } from '@/actions/register'
 
 export default function RegisterForm() {
-  const [error, setError] = React.useState<string | undefined>('')
-  const [success, setSuccess] = React.useState<string | undefined>('')
+  const [error, setError] = React.useState<string | undefined>()
+  const [success, setSuccess] = React.useState<string | undefined>()
   const [isPending, startTransition] = React.useTransition()
 
   const form = useForm<z.infer<typeof RegisterSchema>>({
