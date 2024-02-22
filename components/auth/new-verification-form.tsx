@@ -16,7 +16,7 @@ export default function NewVerificationForm() {
 
   const token = searchParams.get('token')
 
-  function onSubmit() {
+  async function onSubmit() {
     if (success || error) return
 
     if (!token) {
@@ -24,14 +24,13 @@ export default function NewVerificationForm() {
       return
     }
 
-    newVerification(token)
-      .then((data) => {
-        setSuccess(data.success)
-        setError(data.error)
-      })
-      .catch(() => {
-        setError('Something went wrong!')
-      })
+    try {
+      const data = await newVerification(token)
+      setSuccess(data.success)
+      setError(data.error)
+    } catch {
+      setError('Something went wrong!')
+    }
   }
 
   React.useEffect(() => {
