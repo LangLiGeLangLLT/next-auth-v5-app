@@ -6,11 +6,14 @@ import { getUserById } from '@/data/user'
 import { UserRole } from '@prisma/client'
 import { getTwoFactorConfirmationByUserId } from './data/two-factor-confirmation'
 
+export type ExtendedUser = {
+  role: UserRole
+  isTwoFactorEnabled: boolean
+} & DefaultSession['user']
+
 declare module 'next-auth' {
   interface Session {
-    user: {
-      role: UserRole
-    } & DefaultSession['user']
+    user: ExtendedUser
   }
 }
 
@@ -71,6 +74,10 @@ export const {
         session.user.role = token.role as UserRole
       }
 
+      if (token.isTwoFactorEnabled && session.user) {
+        session.user.isTwoFactorEnabled = token.isTwoFactorEnabled as boolean
+      }
+
       return session
     },
     async jwt({ token }) {
@@ -81,6 +88,7 @@ export const {
       if (!existingUser) return token
 
       token.role = existingUser.role
+      token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled
 
       return token
     },
