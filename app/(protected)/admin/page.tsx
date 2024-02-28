@@ -35,7 +35,7 @@ export default function Page() {
   }
 
   return (
-    <Card>
+    <Card className="w-4/5">
       <CardHeader>
         <p className="text-2xl font-semibold text-center">Admin</p>
       </CardHeader>

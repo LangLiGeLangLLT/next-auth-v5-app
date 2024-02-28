@@ -11,7 +11,7 @@ export default function UserInfo({
   label: string
 }) {
   return (
-    <Card className="shadow-md">
+    <Card className="w-4/5 shadow-md">
       <CardHeader>
         <p className="text-2xl font-semibold text-center">{label}</p>
       </CardHeader>
