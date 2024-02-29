@@ -6,7 +6,7 @@ import { auth } from '@/auth'
 import { SessionProvider } from 'next-auth/react'
 import { Toaster } from '@/components/ui/sonner'
 
-const fontSans = FontSans({
+export const fontSans = FontSans({
   subsets: ['latin'],
   variable: '--font-sans',
 })
