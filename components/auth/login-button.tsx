@@ -2,6 +2,8 @@
 
 import { useRouter } from 'next/navigation'
 import React from 'react'
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
+import LoginForm from './login-form'
 
 type LoginButtonProps = {
   children: React.ReactNode
@@ -21,7 +23,14 @@ export default function LoginButton({
   }
 
   if (mode === 'modal') {
-    return <span>TODO: Implement modal</span>
+    return (
+      <Dialog>
+        <DialogTrigger asChild={asChild}>{children}</DialogTrigger>
+        <DialogContent className="p-0 border-0 bg-transparent">
+          <LoginForm />
+        </DialogContent>
+      </Dialog>
+    )
   }
 
   return (
